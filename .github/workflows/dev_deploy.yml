@@ -1,0 +1,12 @@
+name: PR Checks
+
+on:
+  push:
+    branches: [ feature ]
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Hello
+        run: echo "hello when triggered pushed to feature"
