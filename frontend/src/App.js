@@ -18,7 +18,7 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <h2>Message from Express API:</h2>
+      <h2>MHello from API:</h2>
       <p>{message}</p>
       <ThreeScene />
     </div>
