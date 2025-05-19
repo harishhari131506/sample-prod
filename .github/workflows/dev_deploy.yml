@@ -2,7 +2,7 @@ name: PR Checks
 
 on:
   push:
-    branches: [ feature ]
+    branches: [ main ]
 
 jobs:
   say-hello:

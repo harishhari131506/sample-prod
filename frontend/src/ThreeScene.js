@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import * as THREE from 'three';
-
+import React, { useEffect, useRef, useState } from "react";
+import * as THREE from "three";
+import './ThreeScene.css'
 const ThreeScene = () => {
   const mountRef = useRef(null);
   const [rotationSpeed, setRotationSpeed] = useState(0.01);
@@ -19,7 +19,7 @@ const ThreeScene = () => {
       50,
       currentMount.clientWidth / currentMount.clientHeight,
       0.1,
-      1000
+      1000,
     );
     camera.position.z = 5;
 
@@ -31,11 +31,11 @@ const ThreeScene = () => {
 
     // Sphere
     const geometry = new THREE.SphereGeometry(1, 1, 1);
-    const material = new THREE.MeshPhysicalMaterial({ 
+    const material = new THREE.MeshPhysicalMaterial({
       color: sphereColor,
       roughness: 0.3,
       metalness: 0.7,
-      wireframe: wireframe
+      wireframe: wireframe,
     });
     const sphere = new THREE.Mesh(geometry, material);
     scene.add(sphere);
@@ -59,7 +59,7 @@ const ThreeScene = () => {
       renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     // Animation loop
     const animate = () => {
@@ -75,7 +75,7 @@ const ThreeScene = () => {
 
     // Clean up on unmount
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
       currentMount.removeChild(renderer.domElement);
     };
   }, [rotationSpeed, sphereColor, wireframe]);
@@ -86,19 +86,19 @@ const ThreeScene = () => {
       <div className="controls">
         <div>
           <label>Rotation Speed:</label>
-          <input 
-            type="range" 
-            min="0" 
-            max="0.05" 
-            step="0.001" 
+          <input
+            type="range"
+            min="0"
+            max="0.05"
+            step="0.001"
             value={rotationSpeed}
             onChange={(e) => setRotationSpeed(parseFloat(e.target.value))}
           />
         </div>
         <div>
           <label>Wireframe:</label>
-          <input 
-            type="checkbox" 
+          <input
+            type="checkbox"
             checked={wireframe}
             onChange={(e) => setWireframe(e.target.checked)}
           />
@@ -109,24 +109,7 @@ const ThreeScene = () => {
           <button onClick={() => setSphereColor(0x22ff88)}>Green</button>
         </div>
       </div>
-      <style jsx>{`
-        .container {
-          display: flex;
-          flex-direction: column;
-          height: 100vh;
-        }
-        .scene-container {
-          flex: 1;
-          width: 100%;
-        }
-        .controls {
-          padding: 1rem;
-          background: #333;
-          color: white;
-          display: flex;
-          justify-content: space-around;
-        }
-      `}</style>
+  
     </div>
   );
 };
