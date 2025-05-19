@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.scene-container {
+  flex: 1;
+  width: 100%;
+}
+.controls {
+  padding: 1rem;
+  background: #333;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+}

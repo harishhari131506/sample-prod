@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
-
+import './ThreeScene.css';
 const ThreeScene = () => {
   const mountRef = useRef(null);
   const [rotationSpeed, setRotationSpeed] = useState(0.01);
@@ -12,7 +12,7 @@ const ThreeScene = () => {
 
     // Scene
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color("white");
+    scene.background = new THREE.Color('white');
 
     // Camera
     const camera = new THREE.PerspectiveCamera(
@@ -31,11 +31,11 @@ const ThreeScene = () => {
 
     // Sphere
     const geometry = new THREE.SphereGeometry(1, 1, 1);
-    const material = new THREE.MeshPhysicalMaterial({ 
+    const material = new THREE.MeshPhysicalMaterial({
       color: sphereColor,
       roughness: 0.3,
       metalness: 0.7,
-      wireframe: wireframe
+      wireframe: wireframe,
     });
     const sphere = new THREE.Mesh(geometry, material);
     scene.add(sphere);
@@ -44,7 +44,7 @@ const ThreeScene = () => {
     const ambientLight = new THREE.AmbientLight(0xffffff, 1);
     scene.add(ambientLight);
 
-    const mainLight = new THREE.DirectionalLight("red", 1);
+    const mainLight = new THREE.DirectionalLight('red', 1);
     mainLight.position.set(5, 5, 5);
     scene.add(mainLight);
 
@@ -86,19 +86,19 @@ const ThreeScene = () => {
       <div className="controls">
         <div>
           <label>Rotation Speed:</label>
-          <input 
-            type="range" 
-            min="0" 
-            max="0.05" 
-            step="0.001" 
+          <input
+            type="range"
+            min="0"
+            max="0.05"
+            step="0.001"
             value={rotationSpeed}
             onChange={(e) => setRotationSpeed(parseFloat(e.target.value))}
           />
         </div>
         <div>
           <label>Wireframe:</label>
-          <input 
-            type="checkbox" 
+          <input
+            type="checkbox"
             checked={wireframe}
             onChange={(e) => setWireframe(e.target.checked)}
           />
@@ -109,24 +109,6 @@ const ThreeScene = () => {
           <button onClick={() => setSphereColor(0x22ff88)}>Green</button>
         </div>
       </div>
-      <style jsx>{`
-        .container {
-          display: flex;
-          flex-direction: column;
-          height: 100vh;
-        }
-        .scene-container {
-          flex: 1;
-          width: 100%;
-        }
-        .controls {
-          padding: 1rem;
-          background: #333;
-          color: white;
-          display: flex;
-          justify-content: space-around;
-        }
-      `}</style>
     </div>
   );
 };
