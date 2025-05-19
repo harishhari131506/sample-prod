@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import * as THREE from "three";
-import './ThreeScene.css'
+import React, { useEffect, useRef, useState } from 'react';
+import * as THREE from 'three';
+import './ThreeScene.css';
 const ThreeScene = () => {
   const mountRef = useRef(null);
   const [rotationSpeed, setRotationSpeed] = useState(0.01);
@@ -12,14 +12,14 @@ const ThreeScene = () => {
 
     // Scene
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color("white");
+    scene.background = new THREE.Color('white');
 
     // Camera
     const camera = new THREE.PerspectiveCamera(
       50,
       currentMount.clientWidth / currentMount.clientHeight,
       0.1,
-      1000,
+      1000
     );
     camera.position.z = 5;
 
@@ -44,7 +44,7 @@ const ThreeScene = () => {
     const ambientLight = new THREE.AmbientLight(0xffffff, 1);
     scene.add(ambientLight);
 
-    const mainLight = new THREE.DirectionalLight("red", 1);
+    const mainLight = new THREE.DirectionalLight('red', 1);
     mainLight.position.set(5, 5, 5);
     scene.add(mainLight);
 
@@ -59,7 +59,7 @@ const ThreeScene = () => {
       renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     // Animation loop
     const animate = () => {
@@ -75,7 +75,7 @@ const ThreeScene = () => {
 
     // Clean up on unmount
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
       currentMount.removeChild(renderer.domElement);
     };
   }, [rotationSpeed, sphereColor, wireframe]);
@@ -109,7 +109,6 @@ const ThreeScene = () => {
           <button onClick={() => setSphereColor(0x22ff88)}>Green</button>
         </div>
       </div>
-  
     </div>
   );
 };

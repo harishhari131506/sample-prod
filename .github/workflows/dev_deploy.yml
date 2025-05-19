@@ -5,8 +5,60 @@ on:
     branches: [ main ]
 
 jobs:
-  say-hello:
+  OnPush-trigger:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Say Hello
-        run: echo "hello when triggered pushed to feature"
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install root dependencies (if monorepo uses workspaces)
+        run: npm install || true
+
+      # ----- Backend -----
+      - name: Install backend dependencies
+        working-directory: ./backend
+        run: npm ci
+
+      - name: Build backend (if needed)
+        working-directory: ./backend
+        run: echo "No build step for backend" # Replace if needed
+
+      - name: Format check (backend)
+        working-directory: ./backend
+        run: npm run format:check
+
+      - name: Format FIX (backend)
+        working-directory: ./backend
+        run: npm run format
+
+      - name: Lint check (backend)
+        working-directory: ./backend
+        run: npm run lint
+
+      # ----- Frontend -----
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Compilation check (frontend build)
+        working-directory: ./frontend
+        run: npm run build
+
+      - name: Format check (frontend)
+        working-directory: ./frontend
+        run: npm run format:check
+
+      - name: Format FIX (frontend)
+        working-directory: ./frontend
+        run: npm run format
+
+      - name: Lint check (frontend)
+        working-directory: ./frontend
+        run: npm run lint
+
