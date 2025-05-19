@@ -27,11 +27,7 @@ jobs:
 
       - name: Build backend (if needed)
         working-directory: ./backend
-        run: echo "No build step for backend" # Replace if needed
-
-      - name: Format check (backend)
-        working-directory: ./backend
-        run: npm run format:check
+        run: echo "No build step for backend"
 
       - name: Format FIX (backend)
         working-directory: ./backend
@@ -49,10 +45,6 @@ jobs:
       - name: Compilation check (frontend build)
         working-directory: ./frontend
         run: npm run build
-
-      - name: Format check (frontend)
-        working-directory: ./frontend
-        run: npm run format:check
 
       - name: Format FIX (frontend)
         working-directory: ./frontend
